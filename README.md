@@ -13,6 +13,7 @@ MedReL begins with a supervised encoder–decoder model based on the pretrained
 - Training uses cross-entropy with standard vision–language preprocessing
 
 This supervised model serves as the reference policy for reinforcement learning.
+
 ---
 
 
@@ -31,6 +32,7 @@ The GRPO reward is a lightweight lexical reward composed of:
 - **Bigram Jaccard similarity**
 - **Repetition penalty** to discourage bigram loops
 - **Length penalty** for excessively long outputs
+- 
 ---
 
 ### **Model Evaluation**
