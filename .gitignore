@@ -1,0 +1,14 @@
+.venv/
+.env
+extras/
+data/
+checkpoints/
+.cache/
+models/
+meds_models/
+*.zip
+*.tar
+*.tar.gz
+__pycache__/
+*.pyc
+.DS_Store
