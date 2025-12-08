@@ -1,11 +1,52 @@
-MedReL: Radiology Report Generation with Supervised Baseline and GRPO
-====================================================================
+# MedReL: Radiology Report Generation with Supervised Baseline and GRPO
 
-Overview
---------
-- Supervised encoder-decoder baseline (ResNet50 image encoder + Transformer decoder).
-- GRPO fine-tuning with KL to the baseline; sampler uses top-p, EOS masking, and blocks `[unused*]` tokens. Reward uses a simple overlap term by default (BLEU/ROUGE/CIDEr/Chexbert/RadGraph are stubbed�swap in real scorers for fidelity).
-- Gradio UI compares baseline vs GRPO; by default it loads the HF VisionEncoderDecoder checkpoints under `models/content/radiology-grpo/checkpoints/{supervised_vision,grpo_vision}`.
+## Overview
+
+### **Supervised Vision–Language Baseline**
+MedReL begins with a supervised encoder–decoder model based on the pretrained  
+**`IAMJB/chexpert-mimic-cxr-findings-baseline`** checkpoint:
+
+- **ViT-based image encoder**
+- **BERT-style text decoder**
+- Encoder is **frozen**; training updates only the decoder
+- Dataset: **Indiana University Chest X-ray dataset**, Findings-only generation
+- Training uses cross-entropy with standard vision–language preprocessing
+
+This supervised model serves as the reference policy for reinforcement learning.
+
+---
+
+### **GRPO Fine-Tuning with KL-Control**
+We refine the supervised model using **Group Relative Policy Optimization (GRPO)**:
+
+- Generates multiple candidate reports per image (group sampling)
+- Computes **group-normalized advantages**
+- Uses a **PPO-style clipped objective**
+- Applies **KL-control** to constrain divergence from the supervised baseline
+
+#### **Reward Function (Implemented)**
+The GRPO reward is a lightweight lexical reward composed of:
+
+- **Unigram F1 overlap** between prediction and reference  
+- **Bigram Jaccard similarity**
+- **Repetition penalty** to discourage bigram loops
+- **Length penalty** for excessively long outputs
+
+> Note: The implementation **does not** use CheXbert, RadGraph, BLEU, or CIDEr scorers.  
+> The reward is entirely lexical for stability and computational simplicity.
+
+---
+
+### **Model Evaluation**
+We include scripts to evaluate supervised and GRPO-tuned checkpoints using:
+
+- **BLEU**
+- **ROUGE-L**
+
+Generation and evaluation operate on:
+- checkpoints/supervised_vision
+- checkpoints/grpo_vision
+
 
 Project layout
 --------------
