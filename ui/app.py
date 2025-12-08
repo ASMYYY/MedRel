@@ -490,11 +490,7 @@ with gr.Blocks(title="MedReL: Radiology Report Generation using GRPO with KL-con
             gr.Markdown("### Controls")
             with gr.Row():
                 run_btn = gr.Button("Generate reports", size="sm")
-                clear_btn = gr.ClearButton(
-                    components=[],
-                    value="Clear all",
-                    size="sm",
-                )
+                clear_btn = gr.Button("Clear all", size="sm", variant="secondary")
             with gr.Row():
                 image_input = gr.Image(type="filepath", label="Chest X-ray", height=180)
             status = gr.Textbox(label="Status")
@@ -533,10 +529,21 @@ with gr.Blocks(title="MedReL: Radiology Report Generation using GRPO with KL-con
         ],
         show_progress="minimal",
     )
-    # Clear all fields back to defaults
-    clear_btn.add(
-        components=[image_input, reference_out, baseline_choice, grpo_choice, status, steps_out, hf_base_out, hf_grpo_out],
-        values=[None, "", CHOICES_MODELS[0], CHOICES_MODELS[0], "", "", "", ""],
+
+    def clear_all():
+        return (
+            None,  # image
+            "",    # reference
+            CHOICES_MODELS[0],
+            CHOICES_MODELS[0],
+            "", "", "", "",
+        )
+
+    clear_btn.click(
+        fn=clear_all,
+        inputs=[],
+        outputs=[image_input, reference_out, baseline_choice, grpo_choice, status, steps_out, hf_base_out, hf_grpo_out],
+        show_progress="minimal",
     )
 
 
