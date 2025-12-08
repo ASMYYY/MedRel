@@ -14,7 +14,6 @@ MedReL begins with a supervised encoder–decoder model based on the pretrained
 
 This supervised model serves as the reference policy for reinforcement learning.
 
----
 
 ### **GRPO Fine-Tuning with KL-Control**
 We refine the supervised model using **Group Relative Policy Optimization (GRPO)**:
@@ -32,10 +31,6 @@ The GRPO reward is a lightweight lexical reward composed of:
 - **Repetition penalty** to discourage bigram loops
 - **Length penalty** for excessively long outputs
 
-> Note: The implementation **does not** use CheXbert, RadGraph, BLEU, or CIDEr scorers.  
-> The reward is entirely lexical for stability and computational simplicity.
-
----
 
 ### **Model Evaluation**
 We include scripts to evaluate supervised and GRPO-tuned checkpoints using:
