@@ -67,20 +67,6 @@ Setup
 3) Install remaining deps: `python -m pip install -r requirements.txt --no-deps`
 4) Ensure CSV paths point to images (IU: `image_path` like `images/images_normalized/xxx.png`, `--image_root data`).
 
-Training
---------
-- Baseline:
-  ```
-  python experiments/baseline_run.py --train_csv data/indiana/iu_train.csv --val_csv data/indiana/iu_val.csv --image_root data --output_dir checkpoints/baseline --num_workers 0
-  ```
-- GRPO (after baseline):
-  ```
-  python experiments/grpo_run.py --train_csv data/indiana/iu_train.csv --image_root data --baseline_ckpt checkpoints/baseline/baseline_best.pt --output_dir checkpoints/grpo --num_workers 0 --group_size 4 --top_p 0.8 --temperature 0.7 --min_length 5
-  ```
-Expected checkpoints:
-- Baseline: `checkpoints/baseline/baseline_best.pt`
-- GRPO: `checkpoints/grpo/grpo_stepXXXX.pt` (latest used in UI)
-
 UI
 --
 ```
@@ -90,18 +76,6 @@ Two ways to use the UI:
 - Default (HF checkpoints): UI auto-loads `models/content/radiology-grpo/checkpoints/{supervised_vision,grpo_vision}`. Upload an image; reference text is pulled from `indiana_reports.csv`/`indiana_projections.csv` by filename match, and GRPO falls back to baseline if missing.
 - If you prefer your own trained .pt checkpoints (baseline/grpo in `checkpoints/`), adjust the UI loader to point to those paths instead of the HF folders.
 
-Metrics (HF or PT checkpoints)
-------------------------------
-Use the evaluator:
-```
-python scripts/eval_reports.py --csv data/indiana/iu_val.csv --image_root data \
-  --hf_baseline models/content/radiology-grpo/checkpoints/supervised_vision \
-  --hf_grpo models/content/radiology-grpo/checkpoints/grpo_vision \
-  --pt_baseline checkpoints/baseline/baseline_best.pt \
-  --pt_grpo checkpoints/grpo/grpo_stepXXXX.pt \
-  --num_samples 200
-```
-It reports BLEU, ROUGE-L, and overlap for any provided checkpoints.
 
 Notes
 -----
@@ -109,9 +83,14 @@ Notes
 - Reward: overlap term with zero penalty by default; plug in real CheXbert/RadGraph/BLEU/ROUGE/CIDEr scorers and retune weights for clinical fidelity.
 - Torch key_padding_mask warning is harmless; flash attention warning just indicates a non-flash build.
 
-Optional: upstream-style scripts (if you have them available)
+Dataset and Model Training
 ------------------------------------------------------------
-If you also use the upstream `radiology-grpo` scripts (not bundled here), the typical workflow is:
+All the codes for this are present in the submodule `radiology-grpo`. You would need to add your Kaggle auth token to download the Indiana dataset.
+- Installation
+  ```
+  cd radiology-grpo
+  pip install -r requirements.txt
+  ```
 - Dataset prep:
   ```
   python scripts/convert_iu_to_jsonl_with_images.py
@@ -119,18 +98,22 @@ If you also use the upstream `radiology-grpo` scripts (not bundled here), the ty
   ```
 - Training:
   ```
+  # train the supervised baseline model
   python -m src.train_supervised_vision
+  # train the GRPO enhanced model
   python -m src.train_grpo_vision
   ```
+Expected checkpoints:
+- Baseline: `checkpoints/supervised_vision`
+- GRPO: `checkpoints/grpo_vision` (latest used in UI)
+- 
 - Testing / metrics (BLEU/ROUGE/etc.):
   ```
   # Supervised baseline
-  python scripts/eval_vision_metrics.py --model_ckpt checkpoints/supervised_vision --num_samples 200
+  python scripts/eval_vision_metrics.py --model_ckpt checkpoints/supervised_vision --num_samples 791
   # GRPO-tuned model
-  python scripts/eval_vision_metrics.py --model_ckpt checkpoints/grpo_vision --num_samples 200
+  python scripts/eval_vision_metrics.py --model_ckpt checkpoints/grpo_vision --num_samples 791
   ```
-These scripts are from the upstream repo; ensure you have them and their dependencies if you want this path.
-
 ## DEMO
 
 ![Interface](https://github.com/ASMYYY/MedRel/blob/main/images/ui_output.jpeg)
