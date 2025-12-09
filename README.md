@@ -108,7 +108,7 @@ All the codes for this are present in the submodule `radiology-grpo`. You would 
   # GRPO-tuned model
   python scripts/eval_vision_metrics.py --model_ckpt checkpoints/grpo_vision --num_samples 791
   ```
-Dataset link: [data](https://www.kaggle.com/datasets/raddar/chest-xrays-indiana-university)
+Dataset can be found at this link: [data](https://www.kaggle.com/datasets/raddar/chest-xrays-indiana-university).
 We have uploaded our trained models on the drive which can be downloaded through this link: [models](https://drive.google.com/drive/folders/1PgDQ4S_4lRJz5E46bwZ9-44Rt05S0dhz?usp=drive_link). For the demo we have used the one that gave us the best result. It has been zipped in `meds_models.zip` in the same drive.
 ## DEMO
 
