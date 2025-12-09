@@ -32,7 +32,7 @@ The GRPO reward is a lightweight lexical reward composed of:
 - **Bigram Jaccard similarity**
 - **Repetition penalty** to discourage bigram loops
 - **Length penalty** for excessively long outputs
-- 
+
 ---
 
 ### **Model Evaluation**
