@@ -50,7 +50,7 @@ Project layout
 --------------
 - `data/`
   - `images/images_normalized/`: IU X-ray images for the demo.
-  - `indiana/iu_train.csv`, `indiana/iu_val.csv`: 80/20 split; `image_path` is relative to `data/`, `report_text` combines Findings/Impression.
+  - `indiana/iu_train.csv`, `indiana/iu_val.csv`: 70/10/20 split; `image_path` is relative to `data/`, `report_text` combines Findings/Impression.
   - `mimic-cxr/`: placeholder if you switch to MIMIC-CXR.
 - `preprocess/`: dataset loader, image transforms, section extraction, tokenization.
 - `models/`: vision encoder, text decoder, baseline wrapper, GRPO trainer.
