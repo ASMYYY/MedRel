@@ -1,9 +1,0 @@
-torch>=2.0.0
-transformers>=4.40.0
-numpy>=1.23.0
-tqdm>=4.66.0
-torchvision>=0.16.0
-Pillow>=10.0.0
-evaluate
-rouge-score
-matplotlib
