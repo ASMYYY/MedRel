@@ -76,13 +76,6 @@ Two ways to use the UI:
 - Default (HF checkpoints): UI auto-loads `models/content/radiology-grpo/checkpoints/{supervised_vision,grpo_vision}`. Upload an image; reference text is pulled from `indiana_reports.csv`/`indiana_projections.csv` by filename match, and GRPO falls back to baseline if missing.
 - If you prefer your own trained .pt checkpoints (baseline/grpo in `checkpoints/`), adjust the UI loader to point to those paths instead of the HF folders.
 
-
-Notes
------
-- GRPO trainer: top-p sampling, EOS masking, `[unused*]` blocking, per-image group advantages, KL to baseline.
-- Reward: overlap term with zero penalty by default; plug in real CheXbert/RadGraph/BLEU/ROUGE/CIDEr scorers and retune weights for clinical fidelity.
-- Torch key_padding_mask warning is harmless; flash attention warning just indicates a non-flash build.
-
 Dataset and Model Training
 ------------------------------------------------------------
 All the codes for this are present in the submodule `radiology-grpo`. You would need to add your Kaggle auth token to download the Indiana dataset.
