@@ -111,6 +111,6 @@ All the codes for this are present in the submodule `radiology-grpo`. You would 
 Dataset can be found at this link: [data](https://www.kaggle.com/datasets/raddar/chest-xrays-indiana-university).
 We have uploaded our trained models on the drive which can be downloaded through this link: [models](https://drive.google.com/drive/folders/1PgDQ4S_4lRJz5E46bwZ9-44Rt05S0dhz?usp=drive_link). For the demo we have used the one that gave us the best result. It has been zipped in `meds_models.zip` in the same drive.
 ## DEMO
-Link to our demo: [Youtube](https://youtu.be/FMrodQSwYTg)
+Link to our demo: [Youtube](https://youtu.be/AgQ9w66jz8E)
 
 ![Interface](https://github.com/ASMYYY/MedRel/blob/main/images/ui_output.jpeg)
