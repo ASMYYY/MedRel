@@ -132,3 +132,7 @@ If you also use the upstream `radiology-grpo` scripts (not bundled here), the ty
   python scripts/eval_vision_metrics.py --model_ckpt checkpoints/grpo_vision --num_samples 200
   ```
 These scripts are from the upstream repo; ensure you have them and their dependencies if you want this path.
+
+## DEMO
+
+![Interface]([https://…/3DTest.png](https://github.com/ASMYYY/MedRel/blob/main/images/ui_output.jpeg))
