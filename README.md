@@ -103,10 +103,11 @@ All the codes for this are present in the submodule `radiology-grpo`. You would 
   # train the GRPO enhanced model
   python -m src.train_grpo_vision
   ```
-Expected checkpoints:
-- Baseline: `checkpoints/supervised_vision`
-- GRPO: `checkpoints/grpo_vision` (latest used in UI)
-- 
+- Expected checkpoints:
+  ```
+  Baseline: `checkpoints/supervised_vision`
+  GRPO: `checkpoints/grpo_vision` (latest used in UI)
+  ```
 - Testing / metrics (BLEU/ROUGE/etc.):
   ```
   # Supervised baseline
