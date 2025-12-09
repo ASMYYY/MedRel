@@ -108,6 +108,7 @@ All the codes for this are present in the submodule `radiology-grpo`. You would 
   # GRPO-tuned model
   python scripts/eval_vision_metrics.py --model_ckpt checkpoints/grpo_vision --num_samples 791
   ```
+We have uploaded our trained models on the drive which can be downloaded through this link: ![models](https://drive.google.com/drive/folders/1PgDQ4S_4lRJz5E46bwZ9-44Rt05S0dhz?usp=drive_link)
 ## DEMO
 
 ![Interface](https://github.com/ASMYYY/MedRel/blob/main/images/ui_output.jpeg)
