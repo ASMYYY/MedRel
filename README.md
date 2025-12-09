@@ -54,9 +54,7 @@ Project layout
   - `mimic-cxr/`: placeholder if you switch to MIMIC-CXR.
 - `preprocess/`: dataset loader, image transforms, section extraction, tokenization.
 - `models/`: vision encoder, text decoder, baseline wrapper, GRPO trainer.
-- `rewards/`: metric stubs; `composite_reward.py` includes an overlap reward and zero penalty by default.
-- `utils/`: tokenizer loader (Bio_ClinicalBERT), logger, plotter.
-- `experiments/`: `baseline_run.py` (supervised), `grpo_run.py` (GRPO).
+- `radiology_grpo`: training and testing pipeline for supervised baseline and GRPO model.
 - `ui/`: `app.py` Gradio UI (baseline vs GRPO) with CSV reference lookup and optional override.
 - `models/content/radiology-grpo/checkpoints/{supervised_vision,grpo_vision}`: HF VisionEncoderDecoder checkpoints used by the UI.
 
