@@ -135,4 +135,4 @@ These scripts are from the upstream repo; ensure you have them and their depende
 
 ## DEMO
 
-![Interface]([https://…/3DTest.png](https://github.com/ASMYYY/MedRel/blob/main/images/ui_output.jpeg))
+![Interface](https://github.com/ASMYYY/MedRel/blob/main/images/ui_output.jpeg)
